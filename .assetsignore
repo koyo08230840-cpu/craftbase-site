@@ -1,0 +1,4 @@
+# Files Cloudflare must not publish as static assets
+.git
+.gitignore
+.assetsignore
