@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CONTACT お問い合わせ | 株式会社CRAFT BASE</title>
+  <meta name="description" content="株式会社CRAFT BASEへのお問い合わせ。法人・協業・イベント関連のご相談、事業提携・スポンサー、仲間募集、イベント申込はこちらから。">
+  <link rel="canonical" href="https://craftbase.biz/contact.html">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="株式会社CRAFT BASE">
+  <meta property="og:title" content="CONTACT お問い合わせ | 株式会社CRAFT BASE">
+  <meta property="og:url" content="https://craftbase.biz/contact.html">
+  <meta property="og:image" content="https://craftbase.biz/assets/img/ogp.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="assets/img/logo-mark.png" type="image/png">
+  <link rel="apple-touch-icon" href="assets/img/logo-mark.png">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <!-- ===== Header ===== -->
+  <header class="header">
+    <div class="container header__inner">
+      <a href="index.html" class="logo" aria-label="株式会社CRAFT BASE トップへ">
+        <img class="logo__mark" src="assets/img/logo-mark.png" alt="" width="40" height="44">
+        <span>CRAFT BASE<small>CRAFT BASE Inc.</small></span>
+      </a>
+      <button class="menu-btn" type="button" aria-controls="gnav" aria-expanded="false" aria-label="メニューを開く">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="gnav" id="gnav" aria-label="グローバルナビゲーション">
+        <ul class="gnav__list">
+          <li><a class="gnav__link" href="index.html">TOP<span>トップ</span></a></li>
+          <li><a class="gnav__link" href="business.html">BUSINESS<span>事業紹介</span></a></li>
+          <li><a class="gnav__link" href="about.html">ABOUT US<span>会社紹介</span></a></li>
+          <li><a class="gnav__link" href="news.html">PROJECT・NEWS<span>実績・お知らせ</span></a></li>
+          <li class="gnav__cta"><a class="btn" href="contact.html" aria-current="page">CONTACT</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="container">
+        <ol class="breadcrumb"><li><a href="index.html">TOP</a></li><li>CONTACT</li></ol>
+        <h1 class="page-hero__en">CONTACT</h1>
+        <p class="page-hero__ja">お問い合わせ</p>
+        <p class="page-hero__lead lead">協業のご相談から、イベントのお申込み、共に挑戦する仲間へのご応募まで。お気軽にご連絡ください。</p>
+      </div>
+    </section>
+
+    <!-- Contact types -->
+    <section class="section" id="types">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="section-head__en">INQUIRY</span>
+          <span class="section-head__ja">お問い合わせ種別</span>
+        </div>
+        <div class="contact-types">
+          <a class="contact-type reveal" href="?type=corporate#form">
+            <p class="contact-type__label">CORPORATE</p>
+            <h3 class="contact-type__title">法人・協業のご相談</h3>
+            <p class="contact-type__text">営業企画・事業成長支援、企業イベントのご依頼など。</p>
+          </a>
+          <a class="contact-type reveal" href="?type=partner#form">
+            <p class="contact-type__label">PARTNERSHIP</p>
+            <h3 class="contact-type__title">事業提携・スポンサー</h3>
+            <p class="contact-type__text">事業提携のご提案、イベント協賛・スポンサーのご相談。</p>
+          </a>
+          <a class="contact-type reveal" href="?type=event#form">
+            <p class="contact-type__label">EVENT ENTRY</p>
+            <h3 class="contact-type__title">イベント申込</h3>
+            <p class="contact-type__text">開催予定イベントへの参加お申込み。</p>
+          </a>
+          <a class="contact-type reveal" href="?type=recruit#form">
+            <p class="contact-type__label">JOIN US</p>
+            <h3 class="contact-type__title">共に挑戦する仲間の募集</h3>
+            <p class="contact-type__text">採用・業務委託・プロジェクト参加へのご応募。</p>
+          </a>
+          <a class="contact-type reveal" href="?type=media#form">
+            <p class="contact-type__label">MEDIA</p>
+            <h3 class="contact-type__title">取材・メディア関連</h3>
+            <p class="contact-type__text">取材・掲載・登壇のご依頼。</p>
+          </a>
+          <a class="contact-type reveal" href="?type=other#form">
+            <p class="contact-type__label">OTHERS</p>
+            <h3 class="contact-type__title">その他のお問い合わせ</h3>
+            <p class="contact-type__text">上記以外のご質問・ご相談。</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Form -->
+    <section class="section section--paper" id="form">
+      <div class="container">
+        <div class="section-head section-head--center reveal">
+          <span class="section-head__en">FORM</span>
+          <span class="section-head__ja">お問い合わせフォーム</span>
+        </div>
+        <!--
+          ※ 送信先は未設定です。サーバー設置時に action を
+             PHP（例: send.php）またはフォームサービスのURLに差し替えてください。
+        -->
+        <form class="form reveal" action="#" method="post">
+          <div class="form__row">
+            <p class="form__label" id="label-type">お問い合わせ種別<span class="req">必須</span></p>
+            <div class="form__radios" role="radiogroup" aria-labelledby="label-type">
+              <label><input type="radio" name="type" value="corporate" required checked>法人・協業</label>
+              <label><input type="radio" name="type" value="partner">事業提携・スポンサー</label>
+              <label><input type="radio" name="type" value="event">イベント申込</label>
+              <label><input type="radio" name="type" value="recruit">仲間募集への応募</label>
+              <label><input type="radio" name="type" value="media">取材・メディア</label>
+              <label><input type="radio" name="type" value="other">その他</label>
+            </div>
+          </div>
+
+          <!-- イベント申込選択時のみ表示 -->
+          <div class="form__row form__conditional" hidden>
+            <label class="form__label" for="f-event">参加イベント<span class="req">必須</span></label>
+            <select id="f-event" name="event" required>
+              <option value="">選択してください</option>
+              <option>2026.11.20 東京イノベーションハブ（一般参加）</option>
+              <option>2026.11.20 東京イノベーションハブ（1分ピッチ登壇）</option>
+            </select>
+          </div>
+          <div class="form__row form__conditional" hidden>
+            <label class="form__label" for="f-people">参加人数<span class="req">必須</span></label>
+            <input id="f-people" type="number" name="people" min="1" max="20" value="1" required>
+          </div>
+
+          <div class="form__row">
+            <label class="form__label" for="f-company">会社・団体名<span class="opt">任意</span></label>
+            <input id="f-company" type="text" name="company" autocomplete="organization">
+          </div>
+          <div class="form__row">
+            <label class="form__label" for="f-name">お名前<span class="req">必須</span></label>
+            <input id="f-name" type="text" name="name" autocomplete="name" required>
+          </div>
+          <div class="form__row">
+            <label class="form__label" for="f-email">メールアドレス<span class="req">必須</span></label>
+            <input id="f-email" type="email" name="email" autocomplete="email" required>
+          </div>
+          <div class="form__row">
+            <label class="form__label" for="f-tel">電話番号<span class="opt">任意</span></label>
+            <input id="f-tel" type="tel" name="tel" autocomplete="tel">
+          </div>
+          <div class="form__row">
+            <label class="form__label" for="f-message">お問い合わせ内容<span class="req">必須</span></label>
+            <textarea id="f-message" name="message" required></textarea>
+          </div>
+
+          <p class="form__privacy">
+            <label><input type="checkbox" name="privacy" required><a href="#">プライバシーポリシー</a>に同意する</label>
+          </p>
+          <div class="form__submit">
+            <button class="btn" type="submit">SEND</button>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== Footer ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__top">
+        <div>
+          <a href="index.html" class="logo"><img class="logo__mark" src="assets/img/logo-mark-light.png" alt="" width="40" height="44"><span>CRAFT BASE</span></a>
+          <p class="footer__tagline">Craft Your Own Base.</p>
+          <address class="footer__address">株式会社CRAFT BASE<br>東京都品川区南品川4丁目4番17号<br>品川サウスタワー</address>
+        </div>
+        <nav class="footer__nav" aria-label="フッターナビゲーション">
+          <div>
+            <p class="footer__nav-title">BUSINESS</p>
+            <ul>
+              <li><a href="business.html#event">イベント・機会創出</a></li>
+              <li><a href="business.html#growth">営業企画・事業成長支援</a></li>
+              <li><a href="business.html#career">キャリア・ライフデザイン</a></li>
+            </ul>
+          </div>
+          <div>
+            <p class="footer__nav-title">ABOUT US</p>
+            <ul>
+              <li><a href="about.html#philosophy">理念・価値観</a></li>
+              <li><a href="about.html#story">創業ストーリー</a></li>
+              <li><a href="about.html#company">会社概要</a></li>
+            </ul>
+          </div>
+          <div>
+            <p class="footer__nav-title">PROJECT・NEWS</p>
+            <ul>
+              <li><a href="news.html#next-event">次回イベント</a></li><li><a href="news.html#report">活動報告</a></li>
+              <li><a href="news.html#news">お知らせ</a></li>
+            </ul>
+          </div>
+          <div>
+            <p class="footer__nav-title">CONTACT</p>
+            <ul>
+              <li><a href="contact.html?type=corporate#form">法人・協業</a></li>
+              <li><a href="contact.html?type=partner#form">提携・スポンサー</a></li>
+              <li><a href="contact.html?type=event#form">イベント申込</a></li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+      <div class="footer__bottom">
+        <ul class="sns"><li><a class="sns__link" href="https://www.instagram.com/suyama_koyo/" target="_blank" rel="noopener" aria-label="代表アカウント @suyama_koyo（Instagram）"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="17.3" cy="6.7" r="1.2" fill="currentColor"/></svg><span>代表アカウント</span></a></li><li><a class="sns__link" href="https://www.instagram.com/craftbeer_community/" target="_blank" rel="noopener" aria-label="クラフトビールアカウント @craftbeer_community（Instagram）"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="17.3" cy="6.7" r="1.2" fill="currentColor"/></svg><span>クラフトビールアカウント</span></a></li></ul>
+        <p><a href="#">プライバシーポリシー</a>　&copy; <span data-year>2026</span> CRAFT BASE Inc.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
