@@ -27,6 +27,7 @@ assets/css/style.css, assets/js/main.js, assets/img/
 - Cloudflare Workers（静的アセット）プロジェクト名 `craftbase-site`。**main に push すると自動で本番デプロイ**（1〜2分）。
   - 確認用URL: https://craftbase-site.reverse-13816484.workers.dev
 - Git: `C:\Program Files\Git\cmd\git.exe`（PATH に無いシェルではフルパスで呼ぶ）。作成者はリポジトリ設定で `陶山功陽 <koyo08230840@gmail.com>`。GitHub の認証情報は保存済みで、エージェントのシェルから push できる。
+- Cloudflare は `/about.html` を `/about` に 307 でリダイレクトする（既定の動作で正常）。デプロイ確認は `/privacy` のように拡張子なしで 200 を見る。
 - 初回デプロイで `.git` が公開されてしまった → `.assetsignore` で解決済み。push 後は `/.git/HEAD` などが 404 になることを確認する習慣を。
 - 旧プレビュー: claude.ai アーティファクト https://claude.ai/artifact/CotWPjtRXc87Vb1wieL7ab （Version 4 時点の内容。今後は workers.dev / 本番で確認すればよい）
 
