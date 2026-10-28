@@ -15,10 +15,11 @@ business.html  事業紹介（3事業＋FUTURE: 小売・ライフスタイル�
 about.html     会社紹介（VISION＋ロゴ／理念「先義後利・挑戦・共に勝つ」／創業ストーリー＋年表／会社概要）
 news.html      NEXT EVENT／EVENT REPORT（活動報告）／NEWS一覧（カテゴリ絞り込み）／MEDIA
 contact.html   問い合わせ種別6つ＋フォーム（?type=event 等で種別を初期選択、イベント選択時のみ追加項目表示）
+privacy.html   プライバシーポリシー（一般的な内容。制定日 2026-10-28。スタイルは style.css の .policy）
 assets/css/style.css, assets/js/main.js, assets/img/
 .assetsignore  Cloudflare に公開しないファイル（.git, CLAUDE.md など）。新しい非公開ファイルを置くときは必ず追記
 ```
-- ヘッダー・フッターは5ページに同じものをコピーしている。共通部分を変えるときは全ページを同じように直す。
+- ヘッダー・フッターは6ページ（privacy.html 含む）に同じものをコピーしている。共通部分を変えるときは全ページを同じように直す。
 - 画像はすべてローカル（`assets/img/`）。Unsplash の写真はダウンロード済み。ロゴは背景透過済み: `logo.png`（全体）、`logo-mark.png`（白背景用）、`logo-mark-light.png`（暗い背景用＝フッター）。
 
 ## 公開・デプロイ
@@ -29,11 +30,12 @@ assets/css/style.css, assets/js/main.js, assets/img/
 - 初回デプロイで `.git` が公開されてしまった → `.assetsignore` で解決済み。push 後は `/.git/HEAD` などが 404 になることを確認する習慣を。
 - 旧プレビュー: claude.ai アーティファクト https://claude.ai/artifact/CotWPjtRXc87Vb1wieL7ab （Version 4 時点の内容。今後は workers.dev / 本番で確認すればよい）
 
-## ドメイン craftbase.biz（作業中）
-- レジストラは Squarespace（旧 Google Domains）。DNSSEC をオフにし、ネームサーバーを `jack.ns.cloudflare.com` / `josephine.ns.cloudflare.com` に変更済み（2026-10-28 に反映を確認）。
-- Cloudflare の DNS: Squarespace 向けの A×4 と `www` CNAME は削除済み。**メール用の MX（smtp.google.com）・SPF・DKIM の TXT は絶対に消さない**（Google Workspace のメール）。
-- **次の作業**: Cloudflare でゾーンが Active になったら、Workers & Pages → `craftbase-site` → Domains → Add → Custom domain で `craftbase.biz` と `www.craftbase.biz` を追加 → https://craftbase.biz の表示を確認。
-- Active 通知メールはまだ未着（Gmail コネクタで `from:cloudflare.com craftbase.biz` を検索して確認できる）。
+## ドメイン craftbase.biz（接続済み）
+- 本番URL: https://craftbase.biz （https://www.craftbase.biz も同じサイト）。2026-10-28 に Workers & Pages → `craftbase-site` → Domains でカスタムドメインとして両方追加し、表示・`/.git/HEAD` と `/CLAUDE.md` の 404・MX 維持を確認済み。
+- レジストラは Squarespace（旧 Google Domains）。DNSSEC オフ、ネームサーバーは `jack.ns.cloudflare.com` / `josephine.ns.cloudflare.com`。
+- Cloudflare の DNS: **メール用の MX（smtp.google.com）・SPF・DKIM の TXT は絶対に消さない**（Google Workspace のメール）。
+- カスタムドメイン追加時の注意: 入力欄はゾーン名（`craftbase.biz`）で検索し、サブドメインは次画面の Subdomain 欄に入れる。`www.craftbase.biz` と直接入れると「Onboard domain」（新規ゾーン登録）に進んでしまう。
+- SSL/TLS → Edge Certificates の「Always Use HTTPS」をオン済み（2026-10-28）。`http://` は 301 で `https://` へリダイレクトされることを確認済み。
 - Cloudflare から別件のアラート（Workers CPU limit exceeded ×3、KV daily operation limit 50% ×2）が届いている。craftbase-site は静的ファイルのみなので、同アカウントの別 Worker の件と思われる。未調査。
 
 ## 掲載している事実情報（ユーザー確認済み）
@@ -44,16 +46,14 @@ assets/css/style.css, assets/js/main.js, assets/img/
 - 活動実績: 2023 うまやど祭に参加者として初参加／2026.07.30 BREW & WHISKY NIGHT（西五反田）／2026.09.18 CRAFT BEER & PAIRING NIGHT（西五反田）／2026.10.12 第4回うまやど祭（大田区馬込）スポンサー協賛／2026.10.23 KAIGAN BREWERY コラボのクラフトビール会
 - 次回イベント: 2026.11.20（金）東京イノベーションハブ（東京駅・八重洲エリア、19:00開場/19:30開始/21:00終了、参加費3,000円・11/18まで事前決済で500円引、1分ピッチ6,000円、主催 CRAFT BASE／共催 Nextive／協賛 Baku.LLC）
 - 「実績紹介（数字）」はユーザーの希望で削除済み。
+- ABOUT US の創業ストーリー本文（2026-10-28 作成）は上記の経歴・活動実績の事実だけで構成した。ユーザーから修正の指示があればそれに従う。
 
 ## 残タスク
-1. ドメインを Active 後に接続（上記）
-2. お問い合わせフォームの送信先が未設定（`action="#"`）。Cloudflare の仕組みかフォームサービスで実装
-3. 11/20 申込ボタンのリンク先（`href="#"`、HTML に TODO コメントあり）
-4. ABOUT US の創業ストーリー本文がダミー
-5. プライバシーポリシーのページが未作成（リンクは `#`）
-6. OGP 画像 `assets/img/ogp.jpg` が未作成（meta では参照済み）
-7. 10/23 の会、うまやど祭の写真はイメージ写真のまま（実写真が届いたら差し替え）
+1. お問い合わせフォームの送信先が未設定（`action="#"`）。Cloudflare の仕組みかフォームサービスで実装
+2. 11/20 申込ボタンのリンク先（`href="#"`、HTML に TODO コメントあり）
+3. OGP 画像 `assets/img/ogp.jpg` が未作成（meta では参照済み）
+4. 10/23 の会、うまやど祭の写真はイメージ写真のまま（実写真が届いたら差し替え）
 
 ## 作業時の注意
 - 変更後はスマホ幅（375px）でも表示と横スクロールの有無を確認する。
-- このPCには Python・Node が無い。ローカル確認は PowerShell の簡易サーバーを使うか、push して workers.dev で確認する。`-ExecutionPolicy Bypass` 付きのスクリプト実行は権限で拒否されたことがある。
+- このPCには Python・Node が無い。ローカル確認は `Claude Trial\.claude\launch.json` の `craftbase-local`（PowerShell の HttpListener、http://localhost:8787）をブラウザペインの preview_start で起動するか、push して確認する。`-ExecutionPolicy Bypass` 付きのスクリプト実行は権限で拒否されたことがある。
