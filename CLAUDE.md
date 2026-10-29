@@ -16,7 +16,11 @@ about.html     会社紹介（VISION＋ロゴ／理念「先義後利・挑戦�
 news.html      NEXT EVENT／EVENT REPORT（活動報告）／NEWS一覧（カテゴリ絞り込み）／MEDIA
 contact.html   問い合わせ種別6つ＋フォーム（?type=event 等で種別を初期選択、イベント選択時のみ追加項目表示）
 privacy.html   プライバシーポリシー（一般的な内容。制定日 2026-10-28。スタイルは style.css の .policy）
-assets/css/style.css, assets/js/main.js, assets/img/
+events/tokyo-innovation-hub/index.html  11/20 イベントの紹介＋申込フォーム（ルート相対パス /assets/... を使用）
+assets/css/style.css, assets/css/event.css（イベントLP用）, assets/js/main.js, assets/img/
+assets/js/attribution.js  流入経路の記録（全ページで main.js より前に読み込む）
+assets/js/entry-form.js   申込フォームの入力チェック・送信
+tools/apps-script/entry-form.gs  申込データをスプレッドシートに書き込む Google Apps Script（公開対象外）
 .assetsignore  Cloudflare に公開しないファイル（.git, CLAUDE.md など）。新しい非公開ファイルを置くときは必ず追記
 ```
 - ヘッダー・フッターは6ページ（privacy.html 含む）に同じものをコピーしている。共通部分を変えるときは全ページを同じように直す。
@@ -49,9 +53,18 @@ assets/css/style.css, assets/js/main.js, assets/img/
 - 「実績紹介（数字）」はユーザーの希望で削除済み。
 - ABOUT US の創業ストーリー本文（2026-10-28 作成）は上記の経歴・活動実績の事実だけで構成した。ユーザーから修正の指示があればそれに従う。
 
+## イベント申込と流入経路の計測（2026-10-30 作成、ブランチ feature/tih-entry）
+- 申込ページ: `/events/tokyo-innovation-hub/`。フォームの `data-endpoint` に Apps Script のウェブアプリURLを入れると送信される。空の間は送信せず、送信内容を画面に表示するプレビュー動作。
+- 受付: `tools/apps-script/entry-form.gs` をスプレッドシートに貼ってウェブアプリとしてデプロイ。シート「申込一覧」に1行ずつ追記、申込者へ受付メール・主催者へ通知メール（CONFIG で切替）。複数イベントで共用し「イベントID」列で区別。
+- 流入経路: `attribution.js` が localStorage（`cb_attr_v1`、90日）に初回接点 first／直近の外部流入 last／サイト内導線 ref を保存し、申込時に一緒に送る。
+  - 外部で配るURLには utm を付ける。例: `https://craftbase.biz/events/tokyo-innovation-hub/?utm_source=instagram&utm_medium=social&utm_campaign=tih_20261120&utm_content=story`
+  - 命名ルール: utm_source＝媒体名（instagram / line / x / facebook / note / email / flyer / partner_nextive など小文字）、utm_medium＝social / email / referral / offline、utm_campaign＝`tih_20261120` のようにイベント単位、utm_content＝投稿の種類や配布者。
+  - サイト内のボタンは utm ではなく `?ref=` を付ける（top_next_event / top_news / news_next_event / news_list）。
+- 新しいイベントを足すときは events/ に同じ構成でフォルダを作り、`data-event-id` と `data-event-name`、受付メールの本文（gs 側）を変える。
+
 ## 残タスク
 1. お問い合わせフォームの送信先が未設定（`action="#"`）。Cloudflare の仕組みかフォームサービスで実装
-2. 11/20 申込ボタンのリンク先（`href="#"`、HTML に TODO コメントあり）
+2. 11/20 申込: スプレッドシートと Apps Script の設置 → data-endpoint 設定 → 本番反映（feature/tih-entry を main にマージ）
 3. OGP 画像 `assets/img/ogp.jpg` が未作成（meta では参照済み）
 4. 10/23 の会、うまやど祭の写真はイメージ写真のまま（実写真が届いたら差し替え）
 
