@@ -49,7 +49,7 @@ tools/apps-script/entry-form.gs  申込データをスプレッドシートに�
 - Instagram: 代表 @suyama_koyo／クラフトビール @craftbeer_community
 - メディア: note「人とか、仕事とか。」#22（2026.08.26）https://note.com/knowwork/n/n679b85e82e85
 - 活動実績: 2023 うまやど祭に参加者として初参加／2026.07.30 BREW & WHISKY NIGHT（西五反田）／2026.09.18 CRAFT BEER & PAIRING NIGHT（西五反田）／2026.10.12 第4回うまやど祭（大田区馬込）スポンサー協賛／2026.10.23 KAIGAN BREWERY コラボのクラフトビール会
-- 次回イベント: 2026.11.20（金）東京イノベーションハブ（東京駅・八重洲エリア、19:00開場/19:30開始/21:00終了、参加費3,000円・11/18まで事前決済で500円引、1分ピッチ6,000円、主催 CRAFT BASE／共催 Nextive／協賛 Baku.LLC）
+- 次回イベント: 2026.11.20（金）東京イノベーションハブ（東京駅・八重洲エリア、19:00開場/19:30開始/21:00終了、参加費3,000円（事前決済割引は2026-10-30に廃止）、1分ピッチ6,000円（参加費込み）、主催 CRAFT BASE／共催 Nextive／協賛 Baku.LLC）
 - 「実績紹介（数字）」はユーザーの希望で削除済み。
 - ABOUT US の創業ストーリー本文（2026-10-28 作成）は上記の経歴・活動実績の事実だけで構成した。ユーザーから修正の指示があればそれに従う。
 
@@ -60,7 +60,10 @@ tools/apps-script/entry-form.gs  申込データをスプレッドシートに�
   - 外部で配るURLには utm を付ける。例: `https://craftbase.biz/events/tokyo-innovation-hub/?utm_source=instagram&utm_medium=social&utm_campaign=tih_20261120&utm_content=story`
   - 命名ルール: utm_source＝媒体名（instagram / line / x / facebook / note / email / flyer / partner_nextive など小文字）、utm_medium＝social / email / referral / offline、utm_campaign＝`tih_20261120` のようにイベント単位、utm_content＝投稿の種類や配布者。
   - サイト内のボタンは utm ではなく `?ref=` を付ける（top_next_event / top_news / news_next_event / news_list）。
-- 新しいイベントを足すときは events/ に同じ構成でフォルダを作り、`data-event-id` と `data-event-name`、受付メールの本文（gs 側）を変える。
+- 参加区分（一般参加 3,000円／1分ピッチ登壇 6,000円）は必須のラジオボタン。申込後も変更可能（受付メールへの返信で連絡）と明記。
+- 受付メールは送信元が Apps Script の所有者の Gmail（koyo08230840@gmail.com）。差出人の表示名・件名・開催概要は gs の `EVENTS[イベントID]` で設定（11/20 は「11月20日(金)東京イノベーションハブ運営/(株)CRAFT BASE」）。`testAutoReply()` を手動実行すると自分宛てに見本が届く。個人の Gmail から Apps Script で送れるのは1日100通まで。
+- 新しいイベントを足すときは events/ に同じ構成でフォルダを作り、`data-event-id` と `data-event-name` を変え、gs の `EVENTS` に設定を追加する。
+- 注意: TOP・NEWS の NEXT EVENT に表示しているチラシ画像（`event-tokyo-innovation-hub.jpg`）には、廃止した「事前決済で500円引」の文言が画像として残っている。
 
 ## 残タスク
 1. お問い合わせフォームの送信先が未設定（`action="#"`）。Cloudflare の仕組みかフォームサービスで実装

@@ -20,8 +20,23 @@ const CONFIG = {
   TIMEZONE: 'Asia/Tokyo',
   NOTIFY_TO: 'koyo08230840@gmail.com', // 新しい申込があったときの通知先（空文字にすると通知しない）
   SEND_AUTO_REPLY: true,               // 申込者へ受付メールを送るか
-  FROM_NAME: '株式会社CRAFT BASE',
+  FROM_NAME: '株式会社CRAFT BASE',      // イベントごとの設定がない場合の差出人の表示名
   REPLY_TO: '',                        // 受付メールの返信先（空ならスクリプト所有者のアドレス）
+};
+
+// イベントごとの受付メール設定（キーはフォームの data-event-id）
+// fromName: 受け取った人のメールソフトに表示される差出人名。アドレスはスクリプト所有者の Gmail のまま
+const EVENTS = {
+  '20261120-tokyo-innovation-hub': {
+    fromName: '11月20日(金)東京イノベーションハブ運営/(株)CRAFT BASE',
+    title: '東京イノベーションハブ（11月20日・金）',
+    details: [
+      '日時：2026年11月20日（金）19:00 開場／19:30 スタート／21:00 終了',
+      '場所：東京駅・八重洲エリア（東京駅 徒歩4分／日本橋駅 徒歩1分）',
+      '　　　会場の詳細・お支払い方法は、追ってご案内いたします。',
+      '参加費：一般参加 3,000円／1分ピッチ登壇 6,000円（いずれも税込・ドリンク／軽食付き）',
+    ],
+  },
 };
 
 // [送信データのキー, シートの見出し]
@@ -30,6 +45,7 @@ const COLUMNS = [
   ['entry_id', '申込ID'],
   ['event_id', 'イベントID'],
   ['event_name', 'イベント名'],
+  ['entry_type', '参加区分'],
   ['name', 'お名前'],
   ['company', '会社名・団体名'],
   ['industry', '業種'],
@@ -59,7 +75,7 @@ const COLUMNS = [
   ['memo', 'メモ'],
 ];
 
-const REQUIRED = ['event_id', 'name', 'company', 'industry', 'email'];
+const REQUIRED = ['event_id', 'entry_type', 'name', 'company', 'industry', 'email'];
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 function doGet() {
@@ -140,34 +156,56 @@ function clean_(v) {
 }
 
 function sendAutoReply_(p, entryId) {
-  const body = [
+  const ev = EVENTS[p.event_id] || {};
+  const title = ev.title || p.event_name;
+  const lines = [
     p.name + ' 様',
     '',
-    'このたびは「' + p.event_name + '」にお申し込みいただき、ありがとうございます。',
+    'このたびは「' + title + '」にお申し込みいただき、ありがとうございます。',
     '以下の内容で受け付けました。',
     '',
     '■ 申込ID：' + entryId,
+    '■ 参加区分：' + p.entry_type,
     '■ お名前：' + p.name,
     '■ 会社名・団体名：' + p.company,
     '■ 業種：' + p.industry,
     '■ メールアドレス：' + p.email,
     '',
-    '■ 開催概要',
-    '日時：2026年11月20日（金）19:00 開場／19:30 スタート／21:00 終了',
-    '場所：東京駅・八重洲エリア（東京駅 徒歩4分／日本橋駅 徒歩1分）',
-    '　　　会場の詳細・お支払い方法は、追ってご案内いたします。',
+    '※ 参加区分は、お申し込み後でも変更できます。変更をご希望の場合は、本メールへの返信でお知らせください。',
+  ];
+  if (ev.details && ev.details.length) {
+    lines.push('', '■ 開催概要');
+    Array.prototype.push.apply(lines, ev.details);
+  }
+  lines.push(
     '',
     'ご不明な点は、本メールへの返信にてお問い合わせください。',
     '当日お会いできることを楽しみにしております。',
     '',
     '──────────────',
     '株式会社CRAFT BASE',
-    'https://craftbase.biz',
-  ].join('\n');
+    'https://craftbase.biz'
+  );
 
-  const options = { name: CONFIG.FROM_NAME };
+  const options = { name: ev.fromName || CONFIG.FROM_NAME };
   if (CONFIG.REPLY_TO) options.replyTo = CONFIG.REPLY_TO;
-  MailApp.sendEmail(String(p.email).trim(), '【受付完了】' + p.event_name + ' お申し込みありがとうございます', body, options);
+  MailApp.sendEmail(String(p.email).trim(), '【受付完了】' + title + ' お申し込みありがとうございます', lines.join('\n'), options);
+}
+
+/**
+ * 受付メールの見た目を確認するためのテスト。エディタから手動で実行すると、
+ * NOTIFY_TO 宛てに申込者向けの受付メールを1通送る（シートには記録しない）
+ */
+function testAutoReply() {
+  sendAutoReply_({
+    event_id: '20261120-tokyo-innovation-hub',
+    event_name: '東京イノベーションハブ（2026/11/20）',
+    entry_type: '一般参加',
+    name: 'テスト 太郎',
+    company: '株式会社テスト',
+    industry: 'IT・通信・Web',
+    email: CONFIG.NOTIFY_TO,
+  }, 'TEST-0000');
 }
 
 function notifyOwner_(p, entryId) {
@@ -177,6 +215,7 @@ function notifyOwner_(p, entryId) {
     '',
     'イベント：' + p.event_name,
     '申込ID：' + entryId,
+    '参加区分：' + p.entry_type,
     'お名前：' + p.name + '（' + p.company + '）',
     '業種：' + p.industry + (p.position ? '／' + p.position : ''),
     'メール：' + p.email + (p.tel ? '／電話：' + p.tel : ''),

@@ -46,7 +46,10 @@
       if (!err) {
         err = document.createElement('p');
         err.className = 'form__error';
-        (field.type === 'checkbox' ? holder : field.parentNode).appendChild(err);
+        var host = field.type === 'checkbox' ? holder
+          : field.type === 'radio' ? field.closest('.form__radios').parentNode
+          : field.parentNode;
+        host.appendChild(err);
       }
       err.textContent = message;
     } else if (err) {
@@ -55,6 +58,11 @@
   }
 
   function validateField(field) {
+    if (field.type === 'radio') {
+      var picked = form.querySelector('input[name="' + field.name + '"]:checked');
+      setError(field, picked ? '' : '選択してください。');
+      return !!picked;
+    }
     var v = field.type === 'checkbox' ? field.checked : field.value.trim();
     var msg = '';
     if (field.required && !v) {
@@ -71,7 +79,15 @@
 
   var fields = Array.prototype.slice.call(form.querySelectorAll('input:not([type="hidden"]):not([name="website"]), select, textarea'));
   fields.forEach(function (f) {
-    f.addEventListener(f.type === 'checkbox' || f.tagName === 'SELECT' ? 'change' : 'blur', function () { validateField(f); });
+    var onChange = f.type === 'checkbox' || f.type === 'radio' || f.tagName === 'SELECT';
+    f.addEventListener(onChange ? 'change' : 'blur', function () { validateField(f); });
+  });
+  // ラジオボタンはグループごとに1回だけチェックする
+  var seenRadio = {};
+  fields = fields.filter(function (f) {
+    if (f.type !== 'radio') return true;
+    if (seenRadio[f.name]) return false;
+    return (seenRadio[f.name] = true);
   });
 
   // ---- 送信データ ----
@@ -93,6 +109,7 @@
     return {
       event_id: form.dataset.eventId || '',
       event_name: form.dataset.eventName || '',
+      entry_type: get('entry_type'),
       name: get('name'),
       company: get('company'),
       industry: ind,
