@@ -63,7 +63,8 @@ tools/apps-script/entry-form.gs  申込データをスプレッドシートに�
 - 参加区分（一般参加 3,000円／1分ピッチ登壇 6,000円）は必須のラジオボタン。申込後も変更可能（受付メールへの返信で連絡）と明記。
 - 受付メールは送信元が Apps Script の所有者の Gmail（koyo08230840@gmail.com）。差出人の表示名・件名・開催概要は gs の `EVENTS[イベントID]` で設定（11/20 は「11月20日(金)東京イノベーションハブ運営/(株)CRAFT BASE」）。`testAutoReply()` を手動実行すると自分宛てに見本が届く。個人の Gmail から Apps Script で送れるのは1日100通まで。
 - 新しいイベントを足すときは events/ に同じ構成でフォルダを作り、`data-event-id` と `data-event-name` を変え、gs の `EVENTS` に設定を追加する。
-- 注意: TOP・NEWS の NEXT EVENT に表示しているチラシ画像（`event-tokyo-innovation-hub.jpg`）には、廃止した「事前決済で500円引」の文言が画像として残っている。
+- チラシ画像 `event-tokyo-innovation-hub.jpg` は、元の画像から「事前決済で500円引」の帯だけを背景で塗りつぶした版（2026-10-30）。ユーザーが作り直した版は文字化け・誤字が多かったため不採用。
+- 申込管理用スプレッドシート「CRAFT BASE イベント申込管理」: https://docs.google.com/spreadsheets/d/1dpVWE1afW0HpVp6BbVZetabs98QEwJ-k0lh0mkCZkPg/edit （Apps Script の設置待ち）
 
 ## 残タスク
 1. お問い合わせフォームの送信先が未設定（`action="#"`）。Cloudflare の仕組みかフォームサービスで実装
