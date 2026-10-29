@@ -53,7 +53,10 @@ tools/apps-script/entry-form.gs  申込データをスプレッドシートに�
 - 「実績紹介（数字）」はユーザーの希望で削除済み。
 - ABOUT US の創業ストーリー本文（2026-10-28 作成）は上記の経歴・活動実績の事実だけで構成した。ユーザーから修正の指示があればそれに従う。
 
-## イベント申込と流入経路の計測（2026-10-30 作成、ブランチ feature/tih-entry）
+## イベント申込と流入経路の計測（2026-10-30 本番公開済み）
+- 本番URL: https://craftbase.biz/events/tokyo-innovation-hub/ 。送信先は Apps Script ウェブアプリ `https://script.google.com/macros/s/AKfycbyHCEotN-N3oEuOQs2FqYvbqGcC3jAMKRTZWnvBUcLXQUExd_4ADArMhQ2B_ZkE7M1CFA/exec`（スプレッドシートに紐づくスクリプト、プロジェクトID 1KoWxDnjPQotQRW79P_QX6z7-viT8pxRqwlFzzHccIKh6FE6WasB9pcoh）。テスト申込で記録・受付メール・通知メールを確認済み、テスト行は削除済み。
+- gs を書き換えたら、エディタに貼り直したうえで「デプロイを管理」→ 編集 → 新バージョン（URLは変わらない）。リポジトリの `tools/apps-script/entry-form.gs` とエディタの中身を揃えておく。
+- 配布用URLの例（utm_campaign=tih_20261120）: Instagram は utm_content でアカウントと投稿種類を区別（suyama_post / suyama_story / cbc_post / cbc_story / profile）。LINE は utm_source=line&utm_medium=social、メールは email/email、共催・協賛の告知は utm_source=nextive|baku&utm_medium=partner、チラシのQRは utm_source=flyer&utm_medium=offline。
 - 申込ページ: `/events/tokyo-innovation-hub/`。フォームの `data-endpoint` に Apps Script のウェブアプリURLを入れると送信される。空の間は送信せず、送信内容を画面に表示するプレビュー動作。
 - 受付: `tools/apps-script/entry-form.gs` をスプレッドシートに貼ってウェブアプリとしてデプロイ。シート「申込一覧」に1行ずつ追記、申込者へ受付メール・主催者へ通知メール（CONFIG で切替）。複数イベントで共用し「イベントID」列で区別。
 - 流入経路: `attribution.js` が localStorage（`cb_attr_v1`、90日）に初回接点 first／直近の外部流入 last／サイト内導線 ref を保存し、申込時に一緒に送る。
