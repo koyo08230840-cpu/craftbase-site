@@ -26,15 +26,23 @@ const CONFIG = {
 
 // イベントごとの受付メール設定（キーはフォームの data-event-id）
 // fromName: 受け取った人のメールソフトに表示される差出人名。アドレスはスクリプト所有者の Gmail のまま
+// details の各行は全角35文字程度までにする（テキスト版メールは約40文字で自動改行されるため）
 const EVENTS = {
   '20261120-tokyo-innovation-hub': {
     fromName: '11月20日(金)東京イノベーションハブ運営/(株)CRAFT BASE',
     title: '東京イノベーションハブ（11月20日・金）',
     details: [
-      '日時：2026年11月20日（金）19:00 開場／19:30 スタート／21:00 終了',
-      '場所：東京駅・八重洲エリア（東京駅 徒歩4分／日本橋駅 徒歩1分）',
-      '　　　会場の詳細・お支払い方法は、追ってご案内いたします。',
-      '参加費：一般参加 3,000円／1分ピッチ登壇 6,000円（いずれも税込・ドリンク／軽食付き）',
+      '日時：2026年11月20日（金）',
+      '　　　19:00 開場／19:30 スタート／21:00 終了',
+      '会場：リノスペース東京日本橋',
+      '　　　〒103-0027 東京都中央区日本橋2丁目1-17',
+      '　　　丹生ビル 5階',
+      '　　　（東京駅 徒歩4分／日本橋駅 徒歩1分）',
+      '地図：https://maps.app.goo.gl/BvrAaqXtUMTDRYYM8',
+      '参加費：一般参加 3,000円',
+      '　　　　1分ピッチ登壇 6,000円',
+      '　　　　（いずれも税込・ドリンク／軽食付き）',
+      '　　　　お支払い方法は、追ってご案内いたします。',
     ],
   },
 };
@@ -161,7 +169,8 @@ function sendAutoReply_(p, entryId) {
   const lines = [
     p.name + ' 様',
     '',
-    'このたびは「' + title + '」にお申し込みいただき、ありがとうございます。',
+    'このたびは「' + title + '」に',
+    'お申し込みいただき、ありがとうございます。',
     '以下の内容で受け付けました。',
     '',
     '■ 申込ID：' + entryId,
@@ -171,7 +180,9 @@ function sendAutoReply_(p, entryId) {
     '■ 業種：' + p.industry,
     '■ メールアドレス：' + p.email,
     '',
-    '※ 参加区分は、お申し込み後でも変更できます。変更をご希望の場合は、本メールへの返信でお知らせください。',
+    '※ 参加区分は、お申し込み後でも変更できます。',
+    '　 変更をご希望の場合は、本メールへの返信で',
+    '　 お知らせください。',
   ];
   if (ev.details && ev.details.length) {
     lines.push('', '■ 開催概要');
@@ -187,9 +198,21 @@ function sendAutoReply_(p, entryId) {
     'https://craftbase.biz'
   );
 
-  const options = { name: ev.fromName || CONFIG.FROM_NAME };
+  // HTML版も付けて送る（テキスト版だけだと長い行がメールソフトで途中改行されるため）
+  const options = { name: ev.fromName || CONFIG.FROM_NAME, htmlBody: toHtml_(lines) };
   if (CONFIG.REPLY_TO) options.replyTo = CONFIG.REPLY_TO;
   MailApp.sendEmail(String(p.email).trim(), '【受付完了】' + title + ' お申し込みありがとうございます', lines.join('\n'), options);
+}
+
+// テキストの行をそのままの改行で表示するHTMLにする（URLはリンクにする）
+function toHtml_(lines) {
+  const esc = function (s) {
+    return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  };
+  const body = lines.map(function (l) {
+    return esc(l).replace(/(https?:\/\/[^\s<]+)/g, '<a href="$1">$1</a>');
+  }).join('<br>');
+  return '<div style="font-family:sans-serif;font-size:14px;line-height:1.8;color:#222;">' + body + '</div>';
 }
 
 /**
@@ -210,7 +233,7 @@ function testAutoReply() {
 
 function notifyOwner_(p, entryId) {
   const source = [p.utm_source, p.utm_medium, p.utm_campaign].filter(String).join(' / ') || '(不明)';
-  const body = [
+  const lines = [
     '新しい申込がありました。',
     '',
     'イベント：' + p.event_name,
@@ -222,11 +245,11 @@ function notifyOwner_(p, entryId) {
     '流入元：' + source + (p.entry_ref ? '（サイト内導線：' + p.entry_ref + '）' : ''),
     '',
     '自己紹介：',
-    p.intro || '（なし）',
+  ].concat(String(p.intro || '（なし）').split(/\r?\n/), [
     '',
     '一覧：' + SpreadsheetApp.getActiveSpreadsheet().getUrl(),
-  ].join('\n');
-  MailApp.sendEmail(CONFIG.NOTIFY_TO, '【申込】' + p.event_name + '：' + p.name + ' 様', body);
+  ]);
+  MailApp.sendEmail(CONFIG.NOTIFY_TO, '【申込】' + p.event_name + '：' + p.name + ' 様', lines.join('\n'), { htmlBody: toHtml_(lines) });
 }
 
 function json_(obj) {

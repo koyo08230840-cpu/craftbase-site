@@ -55,6 +55,8 @@ tools/apps-script/entry-form.gs  申込データをスプレッドシートに�
 
 ## イベント申込と流入経路の計測（2026-10-30 本番公開済み）
 - 本番URL: https://craftbase.biz/events/tokyo-innovation-hub/ 。送信先は Apps Script ウェブアプリ `https://script.google.com/macros/s/AKfycbyHCEotN-N3oEuOQs2FqYvbqGcC3jAMKRTZWnvBUcLXQUExd_4ADArMhQ2B_ZkE7M1CFA/exec`（スプレッドシートに紐づくスクリプト、プロジェクトID 1KoWxDnjPQotQRW79P_QX6z7-viT8pxRqwlFzzHccIKh6FE6WasB9pcoh）。テスト申込で記録・受付メール・通知メールを確認済み、テスト行は削除済み。
+- 会場（リノスペース東京日本橋／〒103-0027 東京都中央区日本橋2丁目1-17 丹生ビル 5階、地図 https://maps.app.goo.gl/BvrAaqXtUMTDRYYM8）は**受付メールにだけ載せる**（ユーザー指定。申込ページ・TOP・NEWS は「東京駅・八重洲エリア」のまま）。
+- 受付メールはテキスト版が約40文字で自動改行されるため、1行を全角35文字程度までに保ち、HTML版（toHtml_）も一緒に送っている。
 - gs を書き換えたら、エディタに貼り直したうえで「デプロイを管理」→ 編集 → 新バージョン（URLは変わらない）。リポジトリの `tools/apps-script/entry-form.gs` とエディタの中身を揃えておく。
 - 配布用URLの例（utm_campaign=tih_20261120）: Instagram は utm_content でアカウントと投稿種類を区別（suyama_post / suyama_story / cbc_post / cbc_story / profile）。LINE は utm_source=line&utm_medium=social、メールは email/email、共催・協賛の告知は utm_source=nextive|baku&utm_medium=partner、チラシのQRは utm_source=flyer&utm_medium=offline。
 - 申込ページ: `/events/tokyo-innovation-hub/`。フォームの `data-endpoint` に Apps Script のウェブアプリURLを入れると送信される。空の間は送信せず、送信内容を画面に表示するプレビュー動作。
