@@ -65,7 +65,7 @@ tools/apps-script/entry-form.gs  申込データをスプレッドシートに�
   - 外部で配るURLには utm を付ける。例: `https://craftbase.biz/events/tokyo-innovation-hub/?utm_source=instagram&utm_medium=social&utm_campaign=tih_20261120&utm_content=story`
   - 命名ルール: utm_source＝媒体名（instagram / line / x / facebook / note / email / flyer / partner_nextive など小文字）、utm_medium＝social / email / referral / offline、utm_campaign＝`tih_20261120` のようにイベント単位、utm_content＝投稿の種類や配布者。
   - サイト内のボタンは utm ではなく `?ref=` を付ける（top_next_event / top_news / news_next_event / news_list）。
-- 年齢（任意、15〜99の数字、全角も可）を役職の下に追加（2026-10-31）。gs は見出し名で列を探して書き込み、足りない見出しは直前項目の右に列ごと自動挿入するので、項目を足しても既存の行はずれない。電話番号は先頭の0が消えないよう文字列で保存。
+- 年齢（必須〈フォーム側のみ。gs は未入力でも受け付ける〉、15〜99の数字、全角も可）を役職の下に追加（2026-10-31）。gs は見出し名で列を探して書き込み、足りない見出しは直前項目の右に列ごと自動挿入するので、項目を足しても既存の行はずれない。電話番号は先頭の0が消えないよう文字列で保存。
 - 参加区分（一般参加 3,000円／1分ピッチ登壇 6,000円）は必須のラジオボタン。申込後も変更可能（受付メールへの返信で連絡）と明記。
 - 受付メールは送信元が Apps Script の所有者の Gmail（koyo08230840@gmail.com）。差出人の表示名・件名・開催概要は gs の `EVENTS[イベントID]` で設定（11/20 は「11月20日(金)東京イノベーションハブ運営/(株)CRAFT BASE」）。`testAutoReply()` を手動実行すると自分宛てに見本が届く。個人の Gmail から Apps Script で送れるのは1日100通まで。
 - 新しいイベントを足すときは events/ に同じ構成でフォルダを作り、`data-event-id` と `data-event-name` を変え、gs の `EVENTS` に設定を追加する。
