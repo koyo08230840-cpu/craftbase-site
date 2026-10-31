@@ -49,7 +49,7 @@ tools/apps-script/entry-form.gs  申込データをスプレッドシートに�
 - Instagram: 代表 @suyama_koyo／クラフトビール @craftbeer_community
 - メディア: note「人とか、仕事とか。」#22（2026.08.26）https://note.com/knowwork/n/n679b85e82e85
 - 活動実績: 2023 うまやど祭に参加者として初参加／2026.07.30 BREW & WHISKY NIGHT（西五反田）／2026.09.18 CRAFT BEER & PAIRING NIGHT（西五反田）／2026.10.12 第4回うまやど祭（大田区馬込）スポンサー協賛／2026.10.23 KAIGAN BREWERY コラボのクラフトビール会
-- 次回イベント: 2026.11.20（金）東京イノベーションハブ（東京駅・八重洲エリア、19:00開場/19:30開始/21:00終了、参加費3,000円（事前決済割引は2026-10-30に廃止）、1分ピッチ6,000円（参加費込み）、主催 CRAFT BASE／共催 Nextive／協賛 Baku.LLC）
+- 次回イベント: 2026.11.20（金）東京イノベーションハブ（東京駅・八重洲エリア、19:00開場/19:30開始/21:00終了、参加費3,000円（事前決済割引は2026-10-30に廃止）、1分ピッチ6,000円（参加費込み）、主催 CRAFT BASE／共催 Nextive・株式会社SUN／協賛 Baku.LLC、支払いは会場現金決済）
 - 「実績紹介（数字）」はユーザーの希望で削除済み。
 - ABOUT US の創業ストーリー本文（2026-10-28 作成）は上記の経歴・活動実績の事実だけで構成した。ユーザーから修正の指示があればそれに従う。
 
@@ -58,7 +58,7 @@ tools/apps-script/entry-form.gs  申込データをスプレッドシートに�
 - 会場（リノスペース東京日本橋／〒103-0027 東京都中央区日本橋2丁目1-17 丹生ビル 5階、地図 https://maps.app.goo.gl/BvrAaqXtUMTDRYYM8）は**受付メールにだけ載せる**（ユーザー指定。申込ページ・TOP・NEWS は「東京駅・八重洲エリア」のまま）。
 - 受付メールはテキスト版が約40文字で自動改行されるため、1行を全角35文字程度までに保ち、HTML版（toHtml_）も一緒に送っている。
 - gs を書き換えたら、エディタに貼り直したうえで「デプロイを管理」→ 編集 → 新バージョン（URLは変わらない）。リポジトリの `tools/apps-script/entry-form.gs` とエディタの中身を揃えておく。
-- 配布用URLの例（utm_campaign=tih_20261120）: Instagram は utm_content でアカウントと投稿種類を区別（suyama_post / suyama_story / cbc_post / cbc_story / profile）。LINE は utm_source=line&utm_medium=social、メールは email/email、共催・協賛の告知は utm_source=nextive|baku&utm_medium=partner、チラシのQRは utm_source=flyer&utm_medium=offline。
+- 配布用URLの例（utm_campaign=tih_20261120）: Instagram は utm_content でアカウントと投稿種類を区別（suyama_post / suyama_story / cbc_post / cbc_story / profile）。LINE は utm_source=line&utm_medium=social、メールは email/email、共催・協賛・紹介元の告知は utm_medium=partner で utm_source=nextive（Nextive）／sun（株式会社SUN）／baku（Baku.LLC）／maroni（マロニー）／linear（リニア）、チラシのQRは utm_source=flyer&utm_medium=offline。
 - 申込ページ: `/events/tokyo-innovation-hub/`。フォームの `data-endpoint` に Apps Script のウェブアプリURLを入れると送信される。空の間は送信せず、送信内容を画面に表示するプレビュー動作。
 - 受付: `tools/apps-script/entry-form.gs` をスプレッドシートに貼ってウェブアプリとしてデプロイ。シート「申込一覧」に1行ずつ追記、申込者へ受付メール・主催者へ通知メール（CONFIG で切替）。複数イベントで共用し「イベントID」列で区別。
 - 流入経路: `attribution.js` が localStorage（`cb_attr_v1`、90日）に初回接点 first／直近の外部流入 last／サイト内導線 ref を保存し、申込時に一緒に送る。
