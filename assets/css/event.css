@@ -86,6 +86,9 @@
 .ev-type span { font-size: 13px; line-height: 1.6; color: var(--c-gray); }
 .ev-type b { display: block; font-size: 15px; color: var(--c-ink); }
 .form__row.is-invalid .ev-type { border-color: #c0392b; }
+.form__age { display: flex; align-items: center; gap: 10px; }
+.form__age input { max-width: 120px; }
+.form__age span { font-size: 14px; color: var(--c-ink); }
 .form__hint { margin-top: 6px; font-size: 12px; color: var(--c-gray); }
 .form__counter { margin-top: 4px; font-size: 12px; color: var(--c-gray); text-align: right; }
 .form__other { margin-top: 10px; }

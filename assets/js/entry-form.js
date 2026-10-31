@@ -15,6 +15,10 @@
   var thanks = document.getElementById('entry-thanks');
   var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   var TEL_RE = /^[0-9０-９+\-－ー()（）\s]{10,20}$/;
+  var AGE_RE = /^(1[5-9]|[2-9][0-9])$/; // 15〜99歳
+  function toHalfWidth(s) {
+    return String(s).replace(/[０-９]/g, function (c) { return String.fromCharCode(c.charCodeAt(0) - 0xFEE0); }).trim();
+  }
 
   // ---- 業種「その他」 ----
   var industry = document.getElementById('f-industry');
@@ -48,6 +52,7 @@
         err.className = 'form__error';
         var host = field.type === 'checkbox' ? holder
           : field.type === 'radio' ? field.closest('.form__radios').parentNode
+          : field.closest('.form__age') ? field.closest('.form__age').parentNode
           : field.parentNode;
         host.appendChild(err);
       }
@@ -72,6 +77,8 @@
       msg = 'メールアドレスの形式をご確認ください。';
     } else if (field.type === 'tel' && v && !TEL_RE.test(v)) {
       msg = '電話番号の形式をご確認ください（ハイフン可）。';
+    } else if (field.name === 'age' && v && !AGE_RE.test(toHalfWidth(v))) {
+      msg = '年齢は数字でご記入ください（例：28）。';
     }
     setError(field, msg);
     return !msg;
@@ -114,6 +121,7 @@
       company: get('company'),
       industry: ind,
       position: get('position'),
+      age: toHalfWidth(get('age')),
       email: get('email'),
       tel: get('tel'),
       intro: get('intro'),

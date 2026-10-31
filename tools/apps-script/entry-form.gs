@@ -59,6 +59,7 @@ const COLUMNS = [
   ['company', '会社名・団体名'],
   ['industry', '業種'],
   ['position', '役職'],
+  ['age', '年齢'],
   ['email', 'メールアドレス'],
   ['tel', '電話番号'],
   ['intro', '自己紹介（当日話したいこと）'],
@@ -107,13 +108,20 @@ function doPost(e) {
   lock.waitLock(10000);
   try {
     const sheet = getSheet_();
-    const row = COLUMNS.map(function (c) {
-      switch (c[0]) {
+    // 列の位置ではなく見出し名で書き込む（あとから列を足しても既存の行がずれない）
+    const header = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0];
+    const keyOf = {};
+    COLUMNS.forEach(function (c) { keyOf[c[1]] = c[0]; });
+    const row = header.map(function (title) {
+      const key = keyOf[title];
+      switch (key) {
+        case undefined: return '';
         case 'received_at': return new Date();
         case 'entry_id': return entryId;
         case 'status': return '未対応';
         case 'memo': return '';
-        default: return clean_(p[c[0]]);
+        case 'tel': return asText_(p.tel); // 先頭の0が消えないよう文字列として保存
+        default: return clean_(p[key]);
       }
     });
     sheet.appendRow(row);
@@ -153,8 +161,32 @@ function getSheet_() {
     sheet.setFrozenRows(1);
     sheet.getRange(1, 1, 1, COLUMNS.length).setFontWeight('bold').setBackground('#f6f5f2');
     sheet.getRange('A:A').setNumberFormat('yyyy/mm/dd hh:mm:ss');
+  } else {
+    ensureColumns_(sheet);
   }
   return sheet;
+}
+
+// COLUMNS にあってシートにない見出しを、直前の項目の右隣に列ごと挿入する（既存の行は空欄のまま）
+function ensureColumns_(sheet) {
+  let header = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0];
+  for (let i = 0; i < COLUMNS.length; i++) {
+    const title = COLUMNS[i][1];
+    if (header.indexOf(title) !== -1) continue;
+    const prev = i > 0 ? header.indexOf(COLUMNS[i - 1][1]) : -1;
+    if (prev === -1) {
+      sheet.getRange(1, header.length + 1).setValue(title);
+    } else {
+      sheet.insertColumnAfter(prev + 1);
+      sheet.getRange(1, prev + 2).setValue(title);
+    }
+    header = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0];
+  }
+}
+
+function asText_(v) {
+  const s = clean_(v);
+  return s && s.charAt(0) !== "'" ? "'" + s : s;
 }
 
 // 文字数を制限し、先頭が = + - @ の値は数式として解釈されないよう ' を付ける
@@ -241,7 +273,7 @@ function notifyOwner_(p, entryId) {
     '申込ID：' + entryId,
     '参加区分：' + p.entry_type,
     'お名前：' + p.name + '（' + p.company + '）',
-    '業種：' + p.industry + (p.position ? '／' + p.position : ''),
+    '業種：' + p.industry + (p.position ? '／' + p.position : '') + (p.age ? '／' + p.age + '歳' : ''),
     'メール：' + p.email + (p.tel ? '／電話：' + p.tel : ''),
     '流入元：' + source + (p.entry_ref ? '（サイト内導線：' + p.entry_ref + '）' : ''),
     '',
