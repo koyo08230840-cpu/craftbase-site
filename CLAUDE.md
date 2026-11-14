@@ -10,8 +10,8 @@
 
 ## ファイル構成
 ```
-index.html     TOP（ヒーロー／ミッション／事業概要／NEXT EVENT／代表メッセージ＋PROFILE＋Instagram／最新ニュース5件）
-business.html  事業紹介（3事業＋FUTURE: 小売・ライフスタイル・地域創生）
+index.html     TOP（文字だけのヒーロー／ミッション／事業紹介（3事業＋FUTURE、id=business/event/growth/career/future）／NEXT EVENT／代表メッセージ＋PROFILE＋Instagram／最新ニュース5件）
+business.html  旧・事業紹介ページ。2026-11-14 に TOP（/#business）へ統合し、今は /#business へ転送するだけのページ（古いリンク用）
 about.html     会社紹介（VISION＋ロゴ／理念「先義後利・挑戦・共に勝つ」／創業ストーリー＋年表／会社概要）
 news.html      NEXT EVENT／EVENT REPORT（活動報告）／NEWS一覧（カテゴリ絞り込み）／MEDIA
 contact.html   問い合わせ種別6つ＋フォーム（?type=event 等で種別を初期選択、イベント選択時のみ追加項目表示）

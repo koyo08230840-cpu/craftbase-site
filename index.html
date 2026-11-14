@@ -35,7 +35,7 @@
       <nav class="gnav" id="gnav" aria-label="グローバルナビゲーション">
         <ul class="gnav__list">
           <li><a class="gnav__link" href="index.html" aria-current="page">TOP<span>トップ</span></a></li>
-          <li><a class="gnav__link" href="business.html">BUSINESS<span>事業紹介</span></a></li>
+          <li><a class="gnav__link" href="#business">BUSINESS<span>事業紹介</span></a></li>
           <li><a class="gnav__link" href="about.html">ABOUT US<span>会社紹介</span></a></li>
           <li><a class="gnav__link" href="news.html">PROJECT・NEWS<span>実績・お知らせ</span></a></li>
           <li class="gnav__cta"><a class="btn" href="contact.html">CONTACT</a></li>
@@ -47,13 +47,12 @@
   <main>
     <!-- ===== Hero ===== -->
     <section class="hero">
-      <div class="ph hero__bg" aria-hidden="true"><img src="assets/img/hero-toast.jpg" alt=""></div>
       <div class="container hero__inner">
         <p class="hero__label">CRAFT BASE Inc.</p>
         <h1 class="hero__title">Craft<br>Your Own <em>Base.</em></h1>
         <p class="hero__copy">自分らしい人生を、自分の手で創る。<br>人・企業・地域の可能性をつなぎ、<br>挑戦するすべての人の「拠点」をつくります。</p>
         <div class="hero__actions">
-          <a class="btn btn--light" href="business.html">OUR BUSINESS</a>
+          <a class="btn btn--light" href="#business">OUR BUSINESS</a>
           <a class="btn btn--ghost" href="contact.html">CONTACT</a>
         </div>
       </div>
@@ -80,44 +79,97 @@
       </div>
     </section>
 
-    <!-- ===== Business overview ===== -->
+    <!-- ===== Business（旧 business.html の内容を統合） ===== -->
     <section class="section section--paper" id="business">
       <div class="container">
         <div class="section-head reveal">
           <span class="section-head__en">BUSINESS</span>
-          <span class="section-head__ja">事業概要</span>
+          <span class="section-head__ja">事業紹介</span>
         </div>
-        <div class="grid grid--3">
-          <article class="biz-card reveal">
-            <div class="ph"><img src="assets/img/biz-event.jpg" alt="交流イベントで語り合う人々" loading="lazy"></div>
-            <div class="biz-card__body">
-              <p class="biz-card__num">01</p>
-              <h3 class="heading-md biz-card__title">イベント・機会創出事業</h3>
+        <p class="lead biz-lead reveal">「機会」「成長」「人生設計」。3つの事業はすべて、自分らしい人生を創る人を増やすためにつながっています。</p>
+
+        <div class="biz-rows">
+          <article class="biz-row reveal" id="event">
+            <div class="biz-row__head">
+              <p class="biz-row__num">01</p>
               <p class="biz-card__en">EVENT &amp; OPPORTUNITY</p>
-              <p class="biz-card__text">交流会・セミナー・地域イベントの企画運営を通じて、人と企業が出会い、新しい挑戦が生まれる場をつくります。</p>
+              <h3 class="biz-row__title">イベント・機会創出事業</h3>
             </div>
-            <div class="biz-card__foot"><a class="link-arrow" href="business.html#event">VIEW MORE</a></div>
+            <div class="biz-row__body">
+              <p>人が出会い、挑戦が生まれる「場」をつくります。交流イベントやセミナー、地域と連携したイベントを企画・運営し、個人と企業、企業と地域が新しい関係を築くきっかけを提供します。</p>
+              <ul class="service__list">
+                <li>交流会・ビジネスマッチングイベントの企画運営</li>
+                <li>セミナー・トークイベントの開催</li>
+                <li>地域・自治体と連携したイベントプロデュース</li>
+                <li>企業向けイベントの受託・運営代行</li>
+              </ul>
+              <div class="tags"><span class="tag">#交流会</span><span class="tag">#地域連携</span><span class="tag">#スポンサー協賛</span></div>
+            </div>
           </article>
-          <article class="biz-card reveal">
-            <div class="ph"><img src="assets/img/biz-growth.jpg" alt="チームでの戦略ミーティング" loading="lazy"></div>
-            <div class="biz-card__body">
-              <p class="biz-card__num">02</p>
-              <h3 class="heading-md biz-card__title">事業成長・組織づくり支援</h3>
+
+          <article class="biz-row reveal" id="growth">
+            <div class="biz-row__head">
+              <p class="biz-row__num">02</p>
               <p class="biz-card__en">GROWTH &amp; TEAM</p>
-              <p class="biz-card__text">営業戦略の立案・実行から、人事・福利厚生を通じた組織づくりまで、現場に入り込んで伴走します。</p>
+              <h3 class="biz-row__title">事業成長・組織づくり支援</h3>
             </div>
-            <div class="biz-card__foot"><a class="link-arrow" href="business.html#growth">VIEW MORE</a></div>
+            <div class="biz-row__body">
+              <p>営業戦略の立案・実行から、人事・福利厚生を通じた組織づくりまで、現場に入り込んで伴走します。お客様との信頼（社外）と社員との関係（社内）の両方に「感謝の仕組み」を取り入れ、企業が長く成長し続ける土台をつくります。</p>
+              <ul class="service__list">
+                <li>社員・取引先の節目を洗い出す「感謝の年間設計」</li>
+                <li>内定・入社・周年など、社員の節目に贈るギフトで組織づくり</li>
+                <li>成約記念やご紹介のお礼など、ギフトでお客様との信頼づくり</li>
+                <li>オーダーメイドのギフトをスピーディーに届ける手配の代行（ギフト秘書）</li>
+                <li>営業戦略・販売企画の立案と実行支援</li>
+              </ul>
+              <div class="tags"><span class="tag">#感謝の仕組み</span><span class="tag">#組織づくり</span><span class="tag">#営業支援</span><span class="tag">#ギフト秘書</span></div>
+              <a class="biz-case" href="projects/gift-secretary/">
+                <span class="biz-case__label">実績｜PROJECT</span>
+                <span class="biz-case__text">オーダーメイドのギフトをスピーディーに贈れる法人向けギフトサービス「ギフト秘書」（株式会社SUN）のパートナー企業として、社員との関係づくり（福利厚生・人事）と、お客様との信頼づくり（営業支援）の両面から「感謝の仕組み」づくりを支援しています。</span>
+                <span class="link-arrow">ギフト秘書の取り組みを見る</span>
+              </a>
+            </div>
           </article>
-          <article class="biz-card reveal">
-            <div class="ph"><img src="assets/img/biz-career.jpg" alt="キャリアについての対話" loading="lazy"></div>
-            <div class="biz-card__body">
-              <p class="biz-card__num">03</p>
-              <h3 class="heading-md biz-card__title">キャリア・ライフデザイン支援</h3>
+
+          <article class="biz-row reveal" id="career">
+            <div class="biz-row__head">
+              <p class="biz-row__num">03</p>
               <p class="biz-card__en">CAREER &amp; LIFE DESIGN</p>
-              <p class="biz-card__text">キャリア相談・研修・コミュニティ運営を通じて、一人ひとりが「自分らしい人生」を描き、実現する力を育みます。</p>
+              <h3 class="biz-row__title">キャリア・ライフデザイン支援</h3>
             </div>
-            <div class="biz-card__foot"><a class="link-arrow" href="business.html#career">VIEW MORE</a></div>
+            <div class="biz-row__body">
+              <p>働き方も生き方も、自分で選び、自分で創る。キャリア相談や研修、コミュニティ運営を通じて、一人ひとりが自分らしい人生の設計図を描けるよう支援します。</p>
+              <ul class="service__list">
+                <li>キャリア相談・コーチング</li>
+                <li>若手・学生向けキャリア教育プログラム</li>
+                <li>企業向けキャリア研修・組織開発</li>
+                <li>挑戦者が集うコミュニティの運営</li>
+              </ul>
+              <div class="tags"><span class="tag">#キャリア</span><span class="tag">#ライフデザイン</span><span class="tag">#コミュニティ</span></div>
+            </div>
           </article>
+        </div>
+
+        <div class="biz-future reveal" id="future">
+          <p class="biz-future__head"><span class="biz-card__en">FUTURE</span>これからの事業展開</p>
+          <p class="biz-future__lead">人・企業・地域をつなぐ基盤の上に、暮らしそのものを豊かにする事業へと領域を広げていきます。</p>
+          <div class="roadmap">
+            <div class="roadmap__item">
+              <span class="roadmap__status">COMING SOON</span>
+              <h3 class="roadmap__title">小売事業</h3>
+              <p class="roadmap__text">こだわりのある作り手と、共感する使い手をつなぐセレクト・物販事業。</p>
+            </div>
+            <div class="roadmap__item">
+              <span class="roadmap__status">COMING SOON</span>
+              <h3 class="roadmap__title">ライフスタイル事業</h3>
+              <p class="roadmap__text">自分らしい暮らし方を提案するブランド・空間・サービスの展開。</p>
+            </div>
+            <div class="roadmap__item">
+              <span class="roadmap__status">COMING SOON</span>
+              <h3 class="roadmap__title">地域創生事業</h3>
+              <p class="roadmap__text">地域の資源と人材を活かし、持続可能なまちづくりに挑戦。</p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -248,9 +300,9 @@
           <div>
             <p class="footer__nav-title">BUSINESS</p>
             <ul>
-              <li><a href="business.html#event">イベント・機会創出</a></li>
-              <li><a href="business.html#growth">事業成長・組織づくり支援</a></li>
-              <li><a href="business.html#career">キャリア・ライフデザイン</a></li>
+              <li><a href="#event">イベント・機会創出</a></li>
+              <li><a href="#growth">事業成長・組織づくり支援</a></li>
+              <li><a href="#career">キャリア・ライフデザイン</a></li>
             </ul>
           </div>
           <div>
