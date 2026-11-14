@@ -291,6 +291,14 @@ body.is-locked { overflow: hidden; }
 .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; }
 .tag { padding: 4px 12px; font-size: 11px; border: 1px solid var(--c-line); border-radius: 999px; color: var(--c-gray); background: var(--c-white); }
 
+/* Business case link (実績カード) */
+.biz-case { display: block; margin-top: 28px; padding: 22px 24px; background: var(--c-paper); border-left: 3px solid var(--c-orange); transition: background .3s var(--ease); }
+.biz-case:hover { background: #efece6; }
+.biz-case__label { display: block; font-family: var(--font-en); font-size: 11px; font-weight: 700; letter-spacing: .16em; color: var(--c-orange); }
+.biz-case__text { display: block; margin-top: 8px; font-size: 14px; line-height: 1.9; color: var(--c-ink); }
+.biz-case .link-arrow { margin-top: 12px; }
+.biz-case:hover .link-arrow { color: var(--c-orange); }
+
 /* Future expansion roadmap */
 .roadmap { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(255, 255, 255, .15); border: 1px solid rgba(255, 255, 255, .15); }
 .roadmap__item { padding: clamp(28px, 3vw, 40px); background: var(--c-ink); }

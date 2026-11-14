@@ -1,0 +1,70 @@
+@charset "UTF-8";
+/* ==========================================================================
+   Project page (loaded after style.css)
+   ========================================================================== */
+
+/* ---------- Hero ---------- */
+.pj-hero {
+  position: relative;
+  padding: calc(var(--header-h) + clamp(56px, 9vw, 120px)) 0 clamp(56px, 8vw, 104px);
+  overflow: hidden;
+  background: var(--c-ink);
+  color: var(--c-white);
+}
+.pj-hero__bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: .42; }
+.pj-hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(100deg, rgba(27, 27, 27, .92) 35%, rgba(27, 27, 27, .35)); }
+.pj-hero__inner { position: relative; z-index: 1; }
+.pj-hero .breadcrumb { color: #b9b5ae; }
+.pj-hero .breadcrumb li + li::before { color: rgba(255, 255, 255, .25); }
+.pj-hero__badge { display: inline-block; padding: 4px 14px; font-size: 12px; font-weight: 700; color: var(--c-ink); background: var(--c-yellow); border-radius: 999px; }
+.pj-hero__kicker { margin-top: 20px; font-family: var(--font-en); font-size: 13px; font-weight: 600; letter-spacing: .24em; color: var(--c-yellow); }
+.pj-hero__title { margin-top: 12px; font-size: clamp(24px, 4.4vw, 48px); font-weight: 700; line-height: 1.55; letter-spacing: .04em; }
+.pj-hero__title em { font-style: normal; color: var(--c-orange); }
+
+/* ---------- Intro ---------- */
+.pj-intro { max-width: 860px; }
+.pj-intro p + p { margin-top: 1.2em; }
+.pj-intro strong { color: var(--c-ink); }
+
+/* ---------- Inside / Outside ---------- */
+.pj-sides { display: grid; grid-template-columns: repeat(2, 1fr); gap: clamp(20px, 3vw, 40px); }
+.pj-side { display: flex; flex-direction: column; background: var(--c-white); border: 1px solid var(--c-line); }
+.pj-side__media { aspect-ratio: 4 / 3; overflow: hidden; }
+.pj-side__media img { width: 100%; height: 100%; object-fit: cover; }
+.pj-side__body { padding: clamp(24px, 3vw, 36px); border-top: 3px solid var(--c-orange); }
+.pj-side:nth-child(2) .pj-side__body { border-top-color: var(--c-brown); }
+.pj-side__label { font-family: var(--font-en); font-size: 12px; font-weight: 700; letter-spacing: .16em; color: var(--c-orange); }
+.pj-side:nth-child(2) .pj-side__label { color: var(--c-brown); }
+.pj-side__title { margin-top: 6px; font-size: clamp(18px, 2vw, 22px); font-weight: 700; line-height: 1.6; color: var(--c-ink); }
+.pj-side__text { margin-top: 14px; font-size: 14px; line-height: 2; }
+
+/* ---------- Steps ---------- */
+.pj-steps { display: grid; grid-template-columns: repeat(2, 1fr); gap: clamp(20px, 3vw, 40px); counter-reset: none; }
+.pj-step { padding: clamp(28px, 3vw, 40px); background: var(--c-white); border: 1px solid var(--c-line); }
+.pj-step__num { font-family: var(--font-en); font-size: 44px; font-weight: 800; line-height: 1; color: var(--c-orange); }
+.pj-step__title { margin-top: 14px; font-size: clamp(17px, 1.9vw, 20px); font-weight: 700; line-height: 1.6; color: var(--c-ink); }
+.pj-step__text { margin-top: 12px; font-size: 14px; line-height: 2; color: var(--c-gray); }
+
+/* ---------- Message ---------- */
+.pj-message { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(32px, 6vw, 88px); align-items: center; }
+.pj-message__media { aspect-ratio: 3 / 4; overflow: hidden; }
+.pj-message__media img { width: 100%; height: 100%; object-fit: cover; }
+.pj-message__quote { font-size: clamp(22px, 3vw, 32px); font-weight: 700; line-height: 1.7; color: var(--c-ink); }
+.pj-message__quote mark { background: linear-gradient(transparent 62%, rgba(240, 180, 20, .45) 62%); color: inherit; }
+.pj-message__text { margin-top: 24px; line-height: 2.1; }
+
+/* ---------- CTA ---------- */
+.pj-cta { text-align: center; }
+.pj-cta__q { font-size: clamp(20px, 2.8vw, 30px); font-weight: 700; line-height: 1.7; }
+.pj-cta .btn { margin-top: 32px; }
+.pj-notes { margin-top: 40px; font-size: 12px; line-height: 1.9; color: #b9b5ae; }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 900px) {
+  .pj-sides, .pj-steps { grid-template-columns: 1fr; }
+  .pj-message { grid-template-columns: 1fr; }
+  .pj-message__media { aspect-ratio: 4 / 3; }
+}
+@media (max-width: 640px) {
+  .pj-cta .btn { width: 100%; padding: 0 16px; gap: 8px; letter-spacing: .02em; }
+}

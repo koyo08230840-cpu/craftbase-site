@@ -17,6 +17,7 @@ news.html      NEXT EVENT／EVENT REPORT（活動報告）／NEWS一覧（カテ
 contact.html   問い合わせ種別6つ＋フォーム（?type=event 等で種別を初期選択、イベント選択時のみ追加項目表示）
 privacy.html   プライバシーポリシー（一般的な内容。制定日 2026-10-28。スタイルは style.css の .policy）
 events/tokyo-innovation-hub/index.html  11/20 イベントの紹介＋申込フォーム（ルート相対パス /assets/... を使用）
+projects/gift-secretary/index.html  PROJECT｜ギフト秘書（株式会社SUNのパートナー企業としての取り組み）。スタイルは assets/css/project.css
 assets/css/style.css, assets/css/event.css（イベントLP用）, assets/js/main.js, assets/img/
 assets/js/attribution.js  流入経路の記録（全ページで main.js より前に読み込む）
 assets/js/entry-form.js   申込フォームの入力チェック・送信
@@ -51,6 +52,7 @@ tools/apps-script/entry-form.gs  申込データをスプレッドシートに�
 - 活動実績: 2023 うまやど祭に参加者として初参加／2026.07.30 BREW & WHISKY NIGHT（西五反田）／2026.09.18 CRAFT BEER & PAIRING NIGHT（西五反田）／2026.10.12 第4回うまやど祭（大田区馬込）スポンサー協賛／2026.10.23 KAIGAN BREWERY コラボのクラフトビール会
 - 次回イベント: 2026.11.20（金）東京イノベーションハブ（東京駅・八重洲エリア、19:00開場/19:30開始/21:00終了、参加費3,000円（事前決済割引は2026-10-30に廃止）、1分ピッチ6,000円（参加費込み）、主催 CRAFT BASE／共催 Nextive・株式会社SUN／協賛 Baku.LLC、支払いは会場現金決済）
 - 「実績紹介（数字）」はユーザーの希望で削除済み。
+- 事業②は 2026-11-14 に「GROWTH &amp; TEAM｜事業成長・組織づくり支援」へ改称（旧 SALES & GROWTH｜営業企画・事業成長支援）。BUSINESS の事業②に実績カード（ギフト秘書）を置き、`/projects/gift-secretary/` へリンク。ギフト秘書は株式会社SUNが運営するサービスで、CRAFT BASE はパートナー企業（SUN承認済み）。離職防止や売上向上を保証しない旨の注記を必ず残す。写真は ~/OneDrive/Desktop/ギフト秘書 の Canva 生成画像を縮小して使用（gift-*.jpg）。
 - ABOUT US の創業ストーリー本文（2026-10-28 作成）は上記の経歴・活動実績の事実だけで構成した。ユーザーから修正の指示があればそれに従う。
 
 ## イベント申込と流入経路の計測（2026-10-30 本番公開済み）
