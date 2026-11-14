@@ -38,6 +38,12 @@
 .pj-side__title { margin-top: 6px; font-size: clamp(18px, 2vw, 22px); font-weight: 700; line-height: 1.6; color: var(--c-ink); }
 .pj-side__text { margin-top: 14px; font-size: 14px; line-height: 2; }
 
+.pj-cases { margin-top: 20px; border-top: 1px solid var(--c-line); }
+.pj-cases li { padding: 16px 0; border-bottom: 1px solid var(--c-line); }
+.pj-cases__title { position: relative; padding-left: 16px; font-size: 14px; font-weight: 700; color: var(--c-ink); }
+.pj-cases__title::before { content: ""; position: absolute; left: 0; top: .55em; width: 8px; height: 8px; background: var(--c-brown); }
+.pj-cases__text { margin-top: 6px; font-size: 13px; line-height: 1.9; color: var(--c-gray); }
+
 /* ---------- Steps ---------- */
 .pj-steps { display: grid; grid-template-columns: repeat(2, 1fr); gap: clamp(20px, 3vw, 40px); counter-reset: none; }
 .pj-step { padding: clamp(28px, 3vw, 40px); background: var(--c-white); border: 1px solid var(--c-line); }
