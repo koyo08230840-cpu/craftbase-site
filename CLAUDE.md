@@ -5,7 +5,7 @@
 ## 概要
 - 会社: 株式会社CRAFT BASE（代表取締役 陶山 功陽）。ブランドメッセージ「Craft Your Own Base.」
 - 設計方針: 「自分らしい人生を創る人を増やす」を軸に、人・企業・地域の可能性をつなぐ会社として一貫性を持たせる。将来の小売・ライフスタイル・地域創生事業へ拡張できる構成。
-- デザイン: 白とダークグレー基調、差し色はロゴ由来のブラウン `#74472a`／オレンジ `#e8791c`／イエロー `#f0b414`。色・余白などは `assets/css/style.css` 冒頭の `:root` 変数で管理。
+- デザイン（2026-11-14 第1段階で B「現代的・端正」に刷新）: 背景は生成りの白 #fbfaf8、文字は #1f1d1a。英字の大見出し・数字は Instrument Serif（--font-display、weight 400）、英字の小ラベル・ボタンは Instrument Sans（--font-en）、和文は Zen Kaku Gothic New（--font-ja）。**オレンジ #e8791c は申込・相談などのボタン（.btn--accent）専用**。装飾の文字・番号・ホバーはブラウン（--c-accent）、装飾の線・点はイエロー（--c-accent-line）、暗い背景上の強調はイエロー。比較に使った4案は _design/fonts.html（公開対象外）。写真は実写真が届くまで素材写真のまま。
 - 素の HTML/CSS/JS のみ（ビルド不要・依存なし）。フォントは Google Fonts（Montserrat / Noto Sans JP）。
 
 ## ファイル構成

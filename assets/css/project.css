@@ -19,7 +19,7 @@
 .pj-hero__badge { display: inline-block; padding: 4px 14px; font-size: 12px; font-weight: 700; color: var(--c-ink); background: var(--c-yellow); border-radius: 999px; }
 .pj-hero__kicker { margin-top: 20px; font-family: var(--font-en); font-size: 13px; font-weight: 600; letter-spacing: .24em; color: var(--c-yellow); }
 .pj-hero__title { margin-top: 12px; font-size: clamp(24px, 4.4vw, 48px); font-weight: 700; line-height: 1.55; letter-spacing: .04em; }
-.pj-hero__title em { font-style: normal; color: var(--c-orange); }
+.pj-hero__title em { font-style: normal; color: var(--c-yellow); }
 .pj-hero__lead { margin-top: 20px; font-size: clamp(15px, 1.7vw, 18px); font-weight: 500; color: #e9e5de; }
 .pj-hero__tags { display: flex; flex-wrap: wrap; gap: 8px 10px; margin-top: 20px; }
 .pj-hero__tags li { padding: 6px 14px; font-size: 13px; font-weight: 700; border: 1px solid rgba(255, 255, 255, .35); border-radius: 999px; background: rgba(255, 255, 255, .06); }
@@ -27,17 +27,17 @@
 
 /* ---------- Strengths ---------- */
 .pj-strengths { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(16px, 2.4vw, 32px); margin-top: clamp(40px, 5vw, 64px); }
-.pj-strength { padding: clamp(24px, 3vw, 36px); background: var(--c-paper); border-top: 3px solid var(--c-orange); }
+.pj-strength { padding: clamp(24px, 3vw, 36px); background: var(--c-paper); border-top: 3px solid var(--c-accent-line); }
 .pj-strength:nth-child(2) { border-top-color: var(--c-yellow); }
 .pj-strength:nth-child(3) { border-top-color: var(--c-brown); }
-.pj-strength__en { font-family: var(--font-en); font-size: 12px; font-weight: 700; letter-spacing: .2em; color: var(--c-orange); }
+.pj-strength__en { font-family: var(--font-en); font-size: 12px; font-weight: 700; letter-spacing: .2em; color: var(--c-accent); }
 .pj-strength__title { margin-top: 8px; font-size: clamp(17px, 1.9vw, 20px); font-weight: 700; line-height: 1.6; color: var(--c-ink); }
 .pj-strength__text { margin-top: 12px; font-size: 14px; line-height: 1.9; color: var(--c-gray); }
 
 .pj-flow { display: grid; grid-template-columns: repeat(4, 1fr); margin-top: clamp(32px, 4vw, 48px); border: 1px solid var(--c-line); }
 .pj-flow li { position: relative; padding: 18px 12px; text-align: center; font-size: 14px; font-weight: 700; color: var(--c-ink); }
 .pj-flow li + li { border-left: 1px solid var(--c-line); }
-.pj-flow span { display: block; font-family: var(--font-en); font-size: 12px; font-weight: 700; letter-spacing: .12em; color: var(--c-orange); }
+.pj-flow span { display: block; font-family: var(--font-en); font-size: 12px; font-weight: 700; letter-spacing: .12em; color: var(--c-accent); }
 
 /* ---------- Intro ---------- */
 .pj-intro { max-width: 860px; }
@@ -49,9 +49,9 @@
 .pj-side { display: flex; flex-direction: column; background: var(--c-white); border: 1px solid var(--c-line); }
 .pj-side__media { aspect-ratio: 4 / 3; overflow: hidden; }
 .pj-side__media img { width: 100%; height: 100%; object-fit: cover; }
-.pj-side__body { padding: clamp(24px, 3vw, 36px); border-top: 3px solid var(--c-orange); }
+.pj-side__body { padding: clamp(24px, 3vw, 36px); border-top: 3px solid var(--c-accent-line); }
 .pj-side:nth-child(2) .pj-side__body { border-top-color: var(--c-brown); }
-.pj-side__label { font-family: var(--font-en); font-size: 12px; font-weight: 700; letter-spacing: .16em; color: var(--c-orange); }
+.pj-side__label { font-family: var(--font-en); font-size: 12px; font-weight: 700; letter-spacing: .16em; color: var(--c-accent); }
 .pj-side:nth-child(2) .pj-side__label { color: var(--c-brown); }
 .pj-side__title { margin-top: 6px; font-size: clamp(18px, 2vw, 22px); font-weight: 700; line-height: 1.6; color: var(--c-ink); }
 .pj-side__text { margin-top: 14px; font-size: 14px; line-height: 2; }
@@ -65,7 +65,7 @@
 /* ---------- Steps ---------- */
 .pj-steps { display: grid; grid-template-columns: repeat(2, 1fr); gap: clamp(20px, 3vw, 40px); counter-reset: none; }
 .pj-step { padding: clamp(28px, 3vw, 40px); background: var(--c-white); border: 1px solid var(--c-line); }
-.pj-step__num { font-family: var(--font-en); font-size: 44px; font-weight: 800; line-height: 1; color: var(--c-orange); }
+.pj-step__num { font-weight: 400; font-family: var(--font-display); font-size: 44px; line-height: 1; color: var(--c-accent); }
 .pj-step__title { margin-top: 14px; font-size: clamp(17px, 1.9vw, 20px); font-weight: 700; line-height: 1.6; color: var(--c-ink); }
 .pj-step__text { margin-top: 12px; font-size: 14px; line-height: 2; color: var(--c-gray); }
 
