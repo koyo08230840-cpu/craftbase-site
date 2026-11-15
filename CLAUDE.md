@@ -60,7 +60,7 @@ tools/apps-script/entry-form.gs  申込データをスプレッドシートに�
 - 会場（リノスペース東京日本橋／〒103-0027 東京都中央区日本橋2丁目1-17 丹生ビル 5階、地図 https://maps.app.goo.gl/BvrAaqXtUMTDRYYM8）は**受付メールにだけ載せる**（ユーザー指定。申込ページ・TOP・NEWS は「東京駅・八重洲エリア」のまま）。
 - 受付メールはテキスト版が約40文字で自動改行されるため、1行を全角35文字程度までに保ち、HTML版（toHtml_）も一緒に送っている。
 - gs を書き換えたら、エディタに貼り直したうえで「デプロイを管理」→ 編集 → 新バージョン（URLは変わらない）。リポジトリの `tools/apps-script/entry-form.gs` とエディタの中身を揃えておく。
-- 配布用URLの例（utm_campaign=tih_20261120）: Instagram は utm_content でアカウントと投稿種類を区別（suyama_post / suyama_story / cbc_post / cbc_story / profile）。LINE は utm_source=line&utm_medium=social、メールは email/email、共催・協賛・紹介元の告知は utm_medium=partner で utm_source=nextive（Nextive）／sun（株式会社SUN）／baku（Baku.LLC）／maroni（マロニー）／linear（リニア）、チラシのQRは utm_source=flyer&utm_medium=offline。
+- 配布用URLの例（utm_campaign=tih_20261120）: Instagram は utm_content でアカウントと投稿種類を区別（suyama_post / suyama_story / cbc_post / cbc_story / profile）。LINE は utm_source=line&utm_medium=social、メールは email/email、共催・協賛・紹介元の告知は utm_medium=partner で utm_source=nextive（Nextive）／sun（株式会社SUN）／baku（Baku.LLC）／maroni（マロニー）／linear（リニア）／chiyotsuna（ちよつな）、チラシのQRは utm_source=flyer&utm_medium=offline。
 - 申込ページ: `/events/tokyo-innovation-hub/`。フォームの `data-endpoint` に Apps Script のウェブアプリURLを入れると送信される。空の間は送信せず、送信内容を画面に表示するプレビュー動作。
 - 受付: `tools/apps-script/entry-form.gs` をスプレッドシートに貼ってウェブアプリとしてデプロイ。シート「申込一覧」に1行ずつ追記、申込者へ受付メール・主催者へ通知メール（CONFIG で切替）。複数イベントで共用し「イベントID」列で区別。
 - 流入経路: `attribution.js` が localStorage（`cb_attr_v1`、90日）に初回接点 first／直近の外部流入 last／サイト内導線 ref を保存し、申込時に一緒に送る。
@@ -73,6 +73,7 @@ tools/apps-script/entry-form.gs  申込データをスプレッドシートに�
 - 新しいイベントを足すときは events/ に同じ構成でフォルダを作り、`data-event-id` と `data-event-name` を変え、gs の `EVENTS` に設定を追加する。
 - チラシ画像 `event-tokyo-innovation-hub.jpg` は、元の画像から「事前決済で500円引」の帯だけを背景で塗りつぶした版（2026-10-30）。ユーザーが作り直した版は文字化け・誤字が多かったため不採用。
 - 申込管理用スプレッドシート「CRAFT BASE イベント申込管理」: https://docs.google.com/spreadsheets/d/1dpVWE1afW0HpVp6BbVZetabs98QEwJ-k0lh0mkCZkPg/edit （Apps Script の設置待ち）
+- 同スプレッドシートの「流入集計」シート（2026-11-15 作成）: B2 のイベントIDで絞り、紹介元・媒体別（固定17行＋その他・合計）、流入元の自動一覧、サイト内導線（ref）別の申込数を自動集計。N〜Q列は集計用の非表示列（申込一覧から見出し名で列を取得）。新しい紹介元を足すときは A〜B 列の表に行を挿入し、C〜F 列の MAP の範囲を広げる。Instagram アプリの共有は utm_source=ig になる。
 
 ## 残タスク
 1. お問い合わせフォームの送信先が未設定（`action="#"`）。Cloudflare の仕組みかフォームサービスで実装
